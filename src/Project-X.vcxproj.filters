@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{6b3635fc-6158-48d5-9ac4-3d7011580350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\Wait">
+      <UniqueIdentifier>{40263abb-6bde-48ba-97cc-3eb9097d6d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\Process">
+      <UniqueIdentifier>{b7cf35d9-371b-4505-be2c-422b9fb73282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{2c16c6f8-112c-49c8-aa6b-318712778fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dumper">
+      <UniqueIdentifier>{1cf4e251-653d-4812-b1db-92d4652e0603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{828ea6da-d693-4100-80e6-502319295d54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Profiler">
+      <UniqueIdentifier>{1e04969d-d044-44c1-8619-eab8abf4b20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\Main">
+      <UniqueIdentifier>{b5d5a5aa-6a07-4bd0-a315-1d55ac7f155f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\WinAPI">
+      <UniqueIdentifier>{070f7fda-31e5-427a-aa98-5b3a035ea0e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{a427028e-5884-4d40-b903-3906323a6e17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Profiler\RapidXML">
+      <UniqueIdentifier>{64a60349-d9e8-423f-980f-97d4a5abfd04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Profiler\RapidXML\Utilities">
+      <UniqueIdentifier>{03253e0d-2b1c-403a-8945-70057ce36579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\Eject">
+      <UniqueIdentifier>{3a016317-df44-4350-a562-80cdba35d465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\Config">
+      <UniqueIdentifier>{fe41a813-6ed3-4fd4-afb2-9f46082aeb9d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Dumper\Dumper.cpp">
+      <Filter>Dumper</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\InjectionCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Routines.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Config\ConfigDlg.cpp">
+      <Filter>Interface\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Eject\EjectDlg.cpp">
+      <Filter>Interface\Eject</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Main\MainDlg.cpp">
+      <Filter>Interface\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Process\ProcessDlg.cpp">
+      <Filter>Interface\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Wait\WaitDlg.cpp">
+      <Filter>Interface\Wait</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiler\Profiler.cpp">
+      <Filter>Profiler</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiler\RapidXML\Utilities\FileUtil.cpp">
+      <Filter>Profiler\RapidXML\Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dumper\Dumper.h">
+      <Filter>Dumper</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DriverExtractor.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\InjectionCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Config\ConfigDlg.h">
+      <Filter>Interface\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Eject\EjectDlg.h">
+      <Filter>Interface\Eject</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Main\MainDlg.h">
+      <Filter>Interface\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Process\ProcessDlg.h">
+      <Filter>Interface\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Wait\WaitDlg.h">
+      <Filter>Interface\Wait</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Button.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\ComboBox.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Control.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Dialog.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\EditBox.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\ListView.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Message.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\ProgressBar.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Static.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\StatusBar.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\StdAfx.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Window.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger\Logger.hpp">
+      <Filter>Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\Profiler.h">
+      <Filter>Profiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\rapidxml.hpp">
+      <Filter>Profiler\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\rapidxml_iterators.hpp">
+      <Filter>Profiler\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\rapidxml_print.hpp">
+      <Filter>Profiler\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\rapidxml_utils.hpp">
+      <Filter>Profiler\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\rapidxml_wrap.hpp">
+      <Filter>Profiler\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\Utilities\FileUtil.h">
+      <Filter>Profiler\RapidXML\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler\RapidXML\Utilities\StringUtil.hpp">
+      <Filter>Profiler\RapidXML\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Resource.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\Resource.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
