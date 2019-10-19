@@ -4,7 +4,7 @@
 #include <future>
 #include <shellapi.h>
 
-cMainDlg::cMainDlg(eStartAction action, const std::wstring& defConfig) : cDialog(IDD_MAIN), _core(_hwnd), _action(action), _defConfig(defConfig)
+cMainDlg::cMainDlg(HINSTANCE instance, eStartAction action, const std::wstring& defConfig) : cDialog(IDD_MAIN), _instance(instance), _core(_hwnd), _action(action), _defConfig(defConfig)
 {
 	_messages[WM_INITDIALOG] = static_cast<cDialog::fnDlgProc>(&cMainDlg::OnInit);
 	_messages[WM_COMMAND] = static_cast<cDialog::fnDlgProc>(&cMainDlg::OnCommand);
@@ -33,15 +33,11 @@ cMainDlg::cMainDlg(eStartAction action, const std::wstring& defConfig) : cDialog
 	_events[IDC_EJECT] = static_cast<cDialog::fnDlgProc>(&cMainDlg::OnEject);
 }
 
-cMainDlg::~cMainDlg()
-{
-}
-
 INT_PTR cMainDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	cDialog::OnInit(hDlg, message, wParam, lParam);
 
-	HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON));
+	HICON hIcon = LoadIcon(_instance, MAKEINTRESOURCE(IDI_ICON));
 	SendMessage(hDlg, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 	SendMessage(hDlg, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 	DeleteObject(hIcon);
@@ -229,7 +225,7 @@ INT_PTR cMainDlg::OnConfig(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam
 		}
 	}
 
-	cConfigDlg ConfigDlg(_profileMgr, _defConfig);
+	cConfigDlg ConfigDlg(_instance, _profileMgr, _defConfig);
 	ConfigDlg.SetExports(diff);
 
 	ConfigDlg.RunModal(_hwnd);
@@ -304,7 +300,7 @@ INT_PTR cMainDlg::OnCloseUp(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 INT_PTR cMainDlg::OnSelect(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	std::wstring path;
-	cProcessDlg ProcessDlg(_processPath);
+	cProcessDlg ProcessDlg(_instance, _processPath);
 
 	switch (_profileMgr.config().processMode)
 	{
@@ -406,7 +402,7 @@ INT_PTR cMainDlg::OnEject(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		return TRUE;
 	}
 
-	cEjectDlg EjectDlg(_core.process(), _processPath);
+	cEjectDlg EjectDlg(_instance, _core.process(), _processPath);
 
 	EjectDlg.RunModal(_hwnd);
 

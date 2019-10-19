@@ -13,7 +13,7 @@ class cWaitDlg : public cDialog
 {
 public:
 
-	cWaitDlg(cInjectionCore& core, sInjectContext& context);
+	cWaitDlg(HINSTANCE instance, cInjectionCore& core, sInjectContext& context);
 	~cWaitDlg();
 
 	inline DWORD status() const { return _status; }
@@ -35,4 +35,6 @@ protected:
 
 	std::thread _waitThread;
 	DWORD _status = STATUS_SUCCESS;
+
+	HINSTANCE _instance = NULL;
 };

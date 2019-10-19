@@ -22,8 +22,8 @@ public:
 		LoadType
 	};
 
-	cEjectDlg(blackbone::Process& proc, const std::wstring& procName);
-	~cEjectDlg();
+	cEjectDlg(HINSTANCE instance, blackbone::Process& proc, const std::wstring& procName);
+	~cEjectDlg() {};
 
 private:
 
@@ -45,4 +45,6 @@ protected:
 
 	ctrl::cListView _modList;
 	ctrl::cButton _unload;
+
+	HINSTANCE _instance = NULL;
 };

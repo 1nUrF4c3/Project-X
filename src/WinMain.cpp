@@ -100,7 +100,7 @@ INT APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 	std::wstring Param;
 	auto Action = ParseCmdLine(Param);
 
-	cMainDlg mainDLG(Action, Param);
+	cMainDlg mainDLG(hInstance, Action, Param);
 
 	if (Action == cMainDlg::RunProfile)
 		return mainDLG.LoadAndInject();

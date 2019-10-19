@@ -25,8 +25,8 @@ public:
 		RunProfile
 	};
 
-	cMainDlg(eStartAction action, const std::wstring& defConfig = L"");
-	~cMainDlg();
+	cMainDlg(HINSTANCE instance, eStartAction action, const std::wstring& defConfig = L"");
+	~cMainDlg() {};
 
 	INT LoadAndInject()
 	{
@@ -94,4 +94,6 @@ protected:
 	ctrl::cComboBox _procList;
 	ctrl::cListView _modules;
 	ctrl::cStatusBar _info;
+
+	HINSTANCE _instance = NULL;
 };

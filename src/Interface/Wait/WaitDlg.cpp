@@ -1,6 +1,6 @@
 #include "WaitDlg.h"
 
-cWaitDlg::cWaitDlg(cInjectionCore& core, sInjectContext& context) : cDialog(IDD_WAIT), _core(core) , _context(context), _waitThread(&cWaitDlg::WaitForInjection, this)
+cWaitDlg::cWaitDlg(HINSTANCE instance, cInjectionCore& core, sInjectContext& context) : cDialog(IDD_WAIT), _instance(instance), _core(core) , _context(context), _waitThread(&cWaitDlg::WaitForInjection, this)
 {
 	_messages[WM_INITDIALOG] = static_cast<cDialog::fnDlgProc>(&cWaitDlg::OnInit);
 	_messages[WM_CLOSE] = static_cast<cDialog::fnDlgProc>(&cWaitDlg::OnCancel);
@@ -18,7 +18,7 @@ INT_PTR cWaitDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	cDialog::OnInit(hDlg, message, wParam, lParam);
 
-	HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON));
+	HICON hIcon = LoadIcon(_instance, MAKEINTRESOURCE(IDI_ICON));
 	SendMessage(hDlg, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 	SendMessage(hDlg, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 	DeleteObject(hIcon);

@@ -1,6 +1,6 @@
 #include "ConfigDlg.h"
 
-cConfigDlg::cConfigDlg(cProfile& cfgMgr, const std::wstring& defConfig) : cDialog(IDD_CONFIG), _profileMgr(cfgMgr), _defConfig(defConfig)
+cConfigDlg::cConfigDlg(HINSTANCE instance, cProfile& cfgMgr, const std::wstring& defConfig) : cDialog(IDD_CONFIG), _instance(instance), _profileMgr(cfgMgr), _defConfig(defConfig)
 {
 	_messages[WM_INITDIALOG] = static_cast<cDialog::fnDlgProc>(&cConfigDlg::OnInit);
 	_messages[WM_CLOSE] = static_cast<cDialog::fnDlgProc>(&cConfigDlg::OnCancel);
@@ -10,15 +10,11 @@ cConfigDlg::cConfigDlg(cProfile& cfgMgr, const std::wstring& defConfig) : cDialo
 	_events[CBN_SELCHANGE] = static_cast<cDialog::fnDlgProc>(&cConfigDlg::OnSelChange);
 }
 
-cConfigDlg::~cConfigDlg()
-{
-}
-
 INT_PTR cConfigDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	cDialog::OnInit(hDlg, message, wParam, lParam);
 
-	HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON));
+	HICON hIcon = LoadIcon(_instance, MAKEINTRESOURCE(IDI_ICON));
 	SendMessage(hDlg, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 	SendMessage(hDlg, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 	DeleteObject(hIcon);

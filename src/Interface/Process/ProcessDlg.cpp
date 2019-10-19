@@ -1,6 +1,6 @@
 #include "ProcessDlg.h"
 
-cProcessDlg::cProcessDlg(const std::wstring& procName) : cDialog(IDD_PROCESS), _processName(procName)
+cProcessDlg::cProcessDlg(HINSTANCE instance, const std::wstring& procName) : cDialog(IDD_PROCESS), _instance(instance), _processName(procName)
 {
 	_messages[WM_INITDIALOG] = static_cast<cDialog::fnDlgProc>(&cProcessDlg::OnInit);
 	_messages[WM_CLOSE] = static_cast<cDialog::fnDlgProc>(&cProcessDlg::OnCancel);
@@ -9,15 +9,11 @@ cProcessDlg::cProcessDlg(const std::wstring& procName) : cDialog(IDD_PROCESS), _
 	_events[IDCANCEL] = static_cast<cDialog::fnDlgProc>(&cProcessDlg::OnCancel);
 }
 
-cProcessDlg::~cProcessDlg()
-{
-}
-
 INT_PTR cProcessDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	cDialog::OnInit(hDlg, message, wParam, lParam);
 
-	HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON));
+	HICON hIcon = LoadIcon(_instance, MAKEINTRESOURCE(IDI_ICON));
 	SendMessage(hDlg, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 	SendMessage(hDlg, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 	DeleteObject(hIcon);

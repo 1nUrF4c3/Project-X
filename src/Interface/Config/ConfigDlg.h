@@ -13,8 +13,8 @@ class cConfigDlg : public cDialog
 {
 public:
 
-	cConfigDlg(cProfile& cfgMgr, const std::wstring& defConfig);
-	~cConfigDlg();
+	cConfigDlg(HINSTANCE instance, cProfile& cfgMgr, const std::wstring& defConfig);
+	~cConfigDlg() {};
 
 	inline void SetExports(const blackbone::pe::vecExports& exports) { _exports = exports; }
 
@@ -64,4 +64,6 @@ protected:
 		ctrl::cButton hideVad;
 
 	} _mmapOptions;
+
+	HINSTANCE _instance = NULL;
 };

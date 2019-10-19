@@ -8,8 +8,8 @@ class cProcessDlg : public cDialog
 {
 public:
 
-	cProcessDlg(const std::wstring& procName);
-	~cProcessDlg();
+	cProcessDlg(HINSTANCE instance, const std::wstring& procName);
+	~cProcessDlg() {};
 
 	std::wstring _processName;
 
@@ -22,4 +22,6 @@ private:
 protected:
 
 	ctrl::cEditBox _process;
+
+	HINSTANCE _instance = NULL;
 };

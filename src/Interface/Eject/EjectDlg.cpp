@@ -1,6 +1,6 @@
 ﻿#include "EjectDlg.h"
 
-cEjectDlg::cEjectDlg(blackbone::Process& proc, const std::wstring& procName) : cDialog(IDD_EJECT), _process(proc), _processName(procName)
+cEjectDlg::cEjectDlg(HINSTANCE instance, blackbone::Process& proc, const std::wstring& procName) : cDialog(IDD_EJECT), _instance(instance), _process(proc), _processName(procName)
 {
 	_messages[WM_INITDIALOG] = static_cast<cDialog::fnDlgProc>(&cEjectDlg::OnInit);
 	_messages[WM_CLOSE] = static_cast<cDialog::fnDlgProc>(&cEjectDlg::OnClose);
@@ -11,15 +11,11 @@ cEjectDlg::cEjectDlg(blackbone::Process& proc, const std::wstring& procName) : c
 	_events[IDC_REFRESH] = static_cast<cDialog::fnDlgProc>(&cEjectDlg::OnRefresh);
 }
 
-cEjectDlg::~cEjectDlg()
-{
-}
-
 INT_PTR cEjectDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	cDialog::OnInit(hDlg, message, wParam, lParam);
 
-	HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON));
+	HICON hIcon = LoadIcon(_instance, MAKEINTRESOURCE(IDI_ICON));
 	SendMessage(hDlg, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 	SendMessage(hDlg, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 	DeleteObject(hIcon);

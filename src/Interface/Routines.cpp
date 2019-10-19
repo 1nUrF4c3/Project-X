@@ -154,7 +154,7 @@ void cMainDlg::Inject()
 
 	if (context.cfg.processMode == Manual)
 	{
-		cWaitDlg WaitDlg(_core, context);
+		cWaitDlg WaitDlg(_instance, _core, context);
 		WaitDlg.RunModal(_hwnd);
 		status = WaitDlg.status();
 	}
