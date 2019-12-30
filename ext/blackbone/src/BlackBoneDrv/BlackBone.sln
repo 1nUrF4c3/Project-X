@@ -1,8 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackBone", "BlackBone.vcxproj", "{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackBone", "BlackBone.vcxproj", "{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,23 +12,23 @@ Global
 		Win8.1 Release|x64 = Win8.1 Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win10 Release|x64.ActiveCfg = Win10 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win10 Release|x64.Build.0 = Win10 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win10 Release|x64.Deploy.0 = Win10 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win7 Release|x64.ActiveCfg = Win7 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win7 Release|x64.Build.0 = Win7 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win7 Release|x64.Deploy.0 = Win7 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win8 Release|x64.ActiveCfg = Win8 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win8 Release|x64.Build.0 = Win8 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win8 Release|x64.Deploy.0 = Win8 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win8.1 Release|x64.ActiveCfg = Win8.1 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win8.1 Release|x64.Build.0 = Win8.1 Release|x64
-		{87FFE4FA-4F53-47C0-8328-E1BAD56A1845}.Win8.1 Release|x64.Deploy.0 = Win8.1 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win10 Release|x64.ActiveCfg = Win10 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win10 Release|x64.Build.0 = Win10 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win10 Release|x64.Deploy.0 = Win10 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win7 Release|x64.ActiveCfg = Win7 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win7 Release|x64.Build.0 = Win7 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win7 Release|x64.Deploy.0 = Win7 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win8 Release|x64.ActiveCfg = Win8 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win8 Release|x64.Build.0 = Win8 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win8 Release|x64.Deploy.0 = Win8 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win8.1 Release|x64.ActiveCfg = Win8.1 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win8.1 Release|x64.Build.0 = Win8.1 Release|x64
+		{50429DDC-D8EC-4926-B913-D7ADE6A3DC9F}.Win8.1 Release|x64.Deploy.0 = Win8.1 Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FD8C7326-3B8C-4417-B763-C2DF56595908}
+		SolutionGuid = {371CA55C-5F6A-4415-88A3-461B6AD50409}
 	EndGlobalSection
 EndGlobal
