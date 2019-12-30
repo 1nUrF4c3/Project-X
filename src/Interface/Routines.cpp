@@ -338,7 +338,7 @@ void cMainDlg::AddToModuleList(std::shared_ptr<blackbone::pe::PEImage>& img, boo
 
 	_images.emplace_back(img);
 	_checks.emplace_back(checked);
-	_modules.Checked(_modules.AddItem(blackbone::Utils::StripPath(img->path()), 0, { blackbone::Utils::StripPath(img->path()), platform, managed }), checked);
+	_modules.Checked(_modules.AddItem(blackbone::Utils::StripPath(img->path()), 0, { platform, managed }), checked);
 }
 
 void cMainDlg::TestSigningMode(bool enable)
