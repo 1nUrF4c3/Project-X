@@ -33,9 +33,10 @@ INT_PTR cEjectDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
 	GetClientRect(_modList.GetHwnd(), &Rect);
 
+	_modList.AddColumn(L"X", 20);
 	_modList.AddColumn(L"Name", (int)((Rect.right - Rect.left) / 5 * 1.5f), Name);
 	_modList.AddColumn(L"Image base", (int)((Rect.right - Rect.left) / 5 * 1.5f), ImageBase);
-	_modList.AddColumn(L"Platform", (Rect.right - Rect.left) / 5 * 1, Platform);
+	_modList.AddColumn(L"Platform", (Rect.right - Rect.left) / 5 * 1 - 20, Platform);
 	_modList.AddColumn(L"Load type", (Rect.right - Rect.left) / 5 * 1, LoadType);
 
 	RefreshList();
@@ -50,8 +51,18 @@ INT_PTR cEjectDlg::OnClose(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam
 
 INT_PTR cEjectDlg::OnNotify(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	if (((LPNMHDR)lParam)->code == LVN_ITEMCHANGED)
+	switch (((LPNMHDR)lParam)->code)
 	{
+#ifdef USE64
+	case HDN_BEGINTRACK:
+		SetWindowLongPtr(hDlg, DWLP_MSGRESULT, TRUE);
+		break;
+#else
+	case HDN_BEGINTRACK:
+		SetWindowLong(hDlg, DWL_MSGRESULT, TRUE);
+		break;
+#endif
+	case LVN_ITEMCHANGED:
 		if (((LPNMLISTVIEW)lParam)->uChanged & LVIF_STATE)
 		{
 			switch (((LPNMLISTVIEW)lParam)->uNewState & LVIS_STATEIMAGEMASK)
@@ -65,6 +76,8 @@ INT_PTR cEjectDlg::OnNotify(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 				break;
 			}
 		}
+
+		break;
 	}
 
 	return TRUE;
@@ -148,7 +161,7 @@ void cEjectDlg::RefreshList()
 			detected = L"Unknown";
 
 		_checks.emplace_back(false);
-		_modList.AddItem(mod.second->name, static_cast<LPARAM>(mod.second->baseAddress), { address, platform, detected });
+		_modList.AddItem(mod.second->name, static_cast<LPARAM>(mod.second->baseAddress), { mod.second->name, address, platform, detected });
 	}
 
 	UpdateInterface();

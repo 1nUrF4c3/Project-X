@@ -66,9 +66,10 @@ INT_PTR cMainDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	GetClientRect(_modules.GetHwnd(), &ModRect);
 	GetClientRect(_hwnd, &ClientRect);
 
+	_modules.AddColumn(L"X", 20);
 	_modules.AddColumn(L"Name", (ModRect.right - ModRect.left) / 2, 1);
 	_modules.AddColumn(L"Architecture", (ModRect.right - ModRect.left) / 4, 2);
-	_modules.AddColumn(L"Native", (ModRect.right - ModRect.left) / 4, 3);
+	_modules.AddColumn(L"Native", (ModRect.right - ModRect.left) / 4 - 20, 3);
 
 	_info.Attach(CreateStatusWindow(WS_CHILD | WS_VISIBLE, L"", _hwnd, IDR_STATUS));
 	_info.SetParts({ (ClientRect.right - ClientRect.left) / 2 - 20, (ClientRect.right - ClientRect.left) / 2 + 20, -1 });
@@ -97,8 +98,18 @@ INT_PTR cMainDlg::OnClose(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
 INT_PTR cMainDlg::OnNotify(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	if (((LPNMHDR)lParam)->code == LVN_ITEMCHANGED)
+	switch (((LPNMHDR)lParam)->code)
 	{
+#ifdef USE64
+	case HDN_BEGINTRACK:
+		SetWindowLongPtr(hDlg, DWLP_MSGRESULT, TRUE);
+		break;
+#else
+	case HDN_BEGINTRACK:
+		SetWindowLong(hDlg, DWL_MSGRESULT, TRUE);
+		break;
+#endif
+	case LVN_ITEMCHANGED:
 		if (((LPNMLISTVIEW)lParam)->uChanged & LVIF_STATE)
 		{
 			switch (((LPNMLISTVIEW)lParam)->uNewState & LVIS_STATEIMAGEMASK)
@@ -112,6 +123,8 @@ INT_PTR cMainDlg::OnNotify(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam
 				break;
 			}
 		}
+
+		break;
 	}
 
 	return TRUE;

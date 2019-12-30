@@ -16,7 +16,7 @@ public:
 
 	enum eColumnID
 	{
-		Name,
+		Name = 1,
 		ImageBase,
 		Platform,
 		LoadType
