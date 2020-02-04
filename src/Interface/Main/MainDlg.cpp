@@ -66,9 +66,9 @@ INT_PTR cMainDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	GetClientRect(_modules.GetHwnd(), &ModRect);
 	GetClientRect(_hwnd, &ClientRect);
 
-	_modules.AddColumn(L"Name", (ModRect.right - ModRect.left) / 2, 1);
-	_modules.AddColumn(L"Architecture", (ModRect.right - ModRect.left) / 4, 2);
-	_modules.AddColumn(L"Native", (ModRect.right - ModRect.left) / 4, 3);
+	_modules.AddColumn(L"Name", (ModRect.right - ModRect.left) / 2, Name);
+	_modules.AddColumn(L"Architecture", (ModRect.right - ModRect.left) / 4, Architecture);
+	_modules.AddColumn(L"Native", (ModRect.right - ModRect.left) / 4, Native);
 
 	_info.Attach(CreateStatusWindow(WS_CHILD | WS_VISIBLE, L"", _hwnd, IDR_STATUS));
 	_info.SetParts({ (ClientRect.right - ClientRect.left) / 2 - 20, (ClientRect.right - ClientRect.left) / 2 + 20, -1 });

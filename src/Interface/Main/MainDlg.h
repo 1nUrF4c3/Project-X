@@ -25,6 +25,13 @@ public:
 		RunProfile
 	};
 
+	enum eColumnID
+	{
+		Name,
+		Architecture,
+		Native
+	};
+
 	cMainDlg(HINSTANCE instance, eStartAction action, const std::wstring& defConfig = L"");
 	~cMainDlg() {};
 

@@ -33,10 +33,10 @@ INT_PTR cEjectDlg::OnInit(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
 	GetClientRect(_modList.GetHwnd(), &Rect);
 
-	_modList.AddColumn(L"Name", (int)((Rect.right - Rect.left) / 5 * 1.5f), Name);
-	_modList.AddColumn(L"Image base", (int)((Rect.right - Rect.left) / 5 * 1.5f), ImageBase);
-	_modList.AddColumn(L"Platform", (Rect.right - Rect.left) / 5 * 1, Platform);
-	_modList.AddColumn(L"Load type", (Rect.right - Rect.left) / 5 * 1, LoadType);
+	_modList.AddColumn(L"Name", ((Rect.right - Rect.left) / 5 * 1.5f), Name);
+	_modList.AddColumn(L"Image base", ((Rect.right - Rect.left) / 5 * 1.5f), ImageBase);
+	_modList.AddColumn(L"Platform", (Rect.right - Rect.left) / 5, Platform);
+	_modList.AddColumn(L"Load type", (Rect.right - Rect.left) / 5, LoadType);
 
 	RefreshList();
 
