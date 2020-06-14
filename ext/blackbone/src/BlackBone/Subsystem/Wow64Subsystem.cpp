@@ -2,6 +2,7 @@
 #include "../Misc/DynImport.h"
 #include "../Include/Macro.h"
 #include <3rd_party/rewolf-wow64ext/src/wow64ext.h>
+#include "../Misc/Trace.hpp"
 
 namespace blackbone
 {
@@ -112,7 +113,13 @@ NTSTATUS NativeWow64::ReadProcessMemoryT( ptr_t lpBaseAddress, LPVOID lpBuffer, 
     DWORD64 junk = 0;
     if (lpBytes == nullptr)
         lpBytes = &junk;
-
+    
+    if (_wowBarrier.targetWow64 && lpBaseAddress < NativeWow64::maxAddr32()) {
+        SetLastNtStatus(STATUS_SUCCESS);
+        ReadProcessMemory(_hProcess, reinterpret_cast<LPVOID>(lpBaseAddress), lpBuffer, nSize, reinterpret_cast<SIZE_T*>(lpBytes));
+        return LastNtStatus();
+    }
+    
     return SAFE_NATIVE_CALL( NtWow64ReadVirtualMemory64, _hProcess, lpBaseAddress, lpBuffer, nSize, lpBytes );
 }
 
@@ -129,7 +136,13 @@ NTSTATUS NativeWow64::WriteProcessMemoryT( ptr_t lpBaseAddress, LPCVOID lpBuffer
     DWORD64 junk = 0;
     if (lpBytes == nullptr)
         lpBytes = &junk;
-
+    
+    if (_wowBarrier.targetWow64 && lpBaseAddress < NativeWow64::maxAddr32()) {
+        SetLastNtStatus(STATUS_SUCCESS);
+        WriteProcessMemory(_hProcess, reinterpret_cast<LPVOID>(lpBaseAddress), lpBuffer, nSize, reinterpret_cast<SIZE_T*>(lpBytes));
+        return LastNtStatus();
+    }
+    
     return SAFE_NATIVE_CALL( NtWow64WriteVirtualMemory64, _hProcess, lpBaseAddress, (LPVOID)lpBuffer, nSize, lpBytes );
 }
 
@@ -143,6 +156,10 @@ NTSTATUS NativeWow64::WriteProcessMemoryT( ptr_t lpBaseAddress, LPCVOID lpBuffer
 NTSTATUS NativeWow64::QueryProcessInfoT( PROCESSINFOCLASS infoClass, LPVOID lpBuffer, uint32_t bufSize )
 {
     ULONG length = 0;
+    
+     //if (_wowBarrier.targetWow64)
+     //    return SAFE_NATIVE_CALL( NtQueryInformationProcess, _hProcess, infoClass, lpBuffer, bufSize, &length );
+    
     return SAFE_NATIVE_CALL( NtWow64QueryInformationProcess64, _hProcess, infoClass, lpBuffer, bufSize, &length );
 }
 
@@ -214,9 +231,8 @@ NTSTATUS NativeWow64::GetThreadContextT( HANDLE hThread, _CONTEXT32& ctx )
     }
     else
     {
-        SetLastNtStatus( STATUS_SUCCESS );
-        GetThreadContext( hThread, reinterpret_cast<PCONTEXT>(&ctx) );
-        return LastNtStatus();
+        auto r = GetThreadContext(hThread, reinterpret_cast<PCONTEXT>(&ctx));
+        return r != 0 ? STATUS_SUCCESS : LastNtStatus();
     }
 }
 
@@ -251,9 +267,8 @@ NTSTATUS NativeWow64::SetThreadContextT( HANDLE hThread, _CONTEXT32& ctx )
     }
     else
     {
-        SetLastNtStatus( STATUS_SUCCESS );
-        SetThreadContext( hThread, reinterpret_cast<const CONTEXT*>(&ctx) );
-        return LastNtStatus();
+        auto r = SetThreadContext(hThread, reinterpret_cast<const CONTEXT*>(&ctx));
+        return r != 0 ? STATUS_SUCCESS : LastNtStatus();
     }
 }
 
