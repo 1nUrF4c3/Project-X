@@ -308,7 +308,7 @@ NTSTATUS cInjectionCore::InjectMultiple(sInjectContext* pContext)
 		pContext->pid = pContext->cfg.pid;
 
 	xlog::Critical(
-		"Injection initiated. Method: %d, process type: %d, process id: 0x%X, manual map flags: 0x%X, erase header: %d, unlink: %d, init routine: '%s', init param: '%ls'.",
+		"Injection initiated. Method: %d, process type: %d, process id: 0x%X, manual map flags: 0x%X, erase header: %d, unlink: %d, init routine: '%ls', init param: '%ls'.",
 		pContext->cfg.injectMode,
 		pContext->cfg.processMode,
 		pContext->pid,
@@ -467,7 +467,7 @@ NTSTATUS cInjectionCore::InjectSingle(sInjectContext& context, blackbone::pe::PE
 		cMessage::ShowError(_hMainDlg, errBuf);
 	}
 
-	if (NT_SUCCESS(status) && mod && context.cfg.injectMode == Standard && context.cfg.erasePE)
+	if (NT_SUCCESS(status) && mod && context.cfg.injectMode < ManualMap && context.cfg.erasePE)
 	{
 		auto size = img.headersSize();
 		DWORD oldProt = 0;
@@ -478,7 +478,7 @@ NTSTATUS cInjectionCore::InjectSingle(sInjectContext& context, blackbone::pe::PE
 		_process.memory().Protect(mod->baseAddress, size, oldProt);
 	}
 
-	if (NT_SUCCESS(status) && mod && context.cfg.injectMode == Standard && context.cfg.unlink)
+	if (NT_SUCCESS(status) && mod && context.cfg.injectMode < ManualMap && context.cfg.unlink)
 		if (_process.modules().Unlink(mod) == false)
 		{
 			status = STATUS_UNSUCCESSFUL;
