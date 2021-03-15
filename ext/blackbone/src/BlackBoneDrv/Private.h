@@ -165,6 +165,7 @@ typedef enum _WinVer
     WINVER_10_19H1 = 0x0A06, // May 2019 update 19H1
     WINVER_10_19H2 = 0x0A07, // November 2019 update 19H2
     WINVER_10_20H1 = 0x0A08, // April 2020 update 20H1
+    WINVER_10_20H2 = 0x0A09, // October 2020 update 20H2
 } WinVer;
 
 extern PLIST_ENTRY PsLoadedModuleList;

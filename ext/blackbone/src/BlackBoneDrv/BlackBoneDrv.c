@@ -460,9 +460,9 @@ NTSTATUS BBInitDynamicData( IN OUT PDYNAMIC_DATA pData )
                         pData->ExRemoveTable -= 0x34;
                     break;
                 }
-                else if (verInfo.dwBuildNumber == 19041)
+                else if (verInfo.dwBuildNumber == 19041 || verInfo.dwBuildNumber == 19042)
                 {
-                    pData->ver                = WINVER_10_20H1;
+                    pData->ver                = verInfo.dwBuildNumber == 19041 ? WINVER_10_20H1 : WINVER_10_20H2;
                     // KP
                     pData->KExecOpt           = 0x283;
                     // EP
